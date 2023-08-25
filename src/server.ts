@@ -1,4 +1,8 @@
+import dotenv from 'dotenv';
 import express from 'express';
+dotenv.config();
+
+import db from './config/db';
 
 const app = express();
 
@@ -9,8 +13,9 @@ app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
+    await db.authenticate();
     console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`);
 });
