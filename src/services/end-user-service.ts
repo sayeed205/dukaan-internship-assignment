@@ -1,4 +1,4 @@
-import { EndUser } from '../models/end-user-model';
+import { EndUser } from '../models';
 import { ErrorResponse } from '../utils';
 import { CreateEndUser } from '../validations/end-user-validation';
 
