@@ -15,9 +15,18 @@ export const getConversationsByChatbotId = async (chatbotId: number) => {
         where: {
             chatbotId,
         },
+        attributes: [
+            'id',
+            'title',
+            'content',
+            'isComplete',
+            'endUserId',
+            'chatbotId',
+            'createdAt',
+        ],
     });
 
-    return conversations;
+    return { ok: true, conversations };
 };
 
 export const getConversationById = async (id: number) => {
@@ -33,7 +42,7 @@ export const getConversationById = async (id: number) => {
         ],
     });
 
-    return conversation;
+    return { ok: true, conversation };
 };
 
 export const updateConversation = async (id: number, isComplete: boolean) => {
@@ -55,13 +64,22 @@ export const updateConversation = async (id: number, isComplete: boolean) => {
 
     conversation.isComplete = isComplete;
     await conversation.save();
-    await conversation.reload();
 
-    return conversation;
+    return { ok: true, conversation };
 };
 
 export const deleteConversation = async (id: number) => {
-    const conversation = await Conversation.findByPk(id);
+    const conversation = await Conversation.findByPk(id, {
+        attributes: [
+            'id',
+            'title',
+            'content',
+            'isComplete',
+            'endUserId',
+            'chatbotId',
+            'createdAt',
+        ],
+    });
 
     if (!conversation) {
         throw new ErrorResponse('Conversation not found', 404);
@@ -69,5 +87,5 @@ export const deleteConversation = async (id: number) => {
 
     await conversation.destroy();
 
-    return true;
+    return { ok: true, conversation };
 };

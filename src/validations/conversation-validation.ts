@@ -47,4 +47,13 @@ export const getConversationById = z.object({
     params: getConversationsByChatbotIdSchema.strict(),
 });
 
+export const updateConversation = z.object({
+    body: z
+        .object({
+            isComplete: z.boolean().default(false),
+        })
+        .strict(),
+    params: getConversationsByChatbotIdSchema.strict(),
+});
+
 export type CreateConversation = z.infer<typeof createConversationSchema>;

@@ -28,7 +28,7 @@ router.get(
 
 router.put(
     '/conversations/:id',
-    validate(conversationValidation.getConversationById),
+    validate(conversationValidation.updateConversation),
     asyncHandler(conversationController.updateConversation)
 );
 

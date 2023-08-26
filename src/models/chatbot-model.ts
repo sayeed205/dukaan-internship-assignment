@@ -13,7 +13,7 @@ class ChatBot extends Model {
 ChatBot.init(
     {
         id: {
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
         },
@@ -21,7 +21,7 @@ ChatBot.init(
             type: DataTypes.STRING,
         },
         userId: {
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: DataTypes.INTEGER,
             references: {
                 model: 'User',
                 key: 'id',

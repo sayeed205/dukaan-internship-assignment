@@ -29,9 +29,10 @@ export const getConversationById = async (req: Request, res: Response) => {
 
 export const updateConversation = async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
+    const isComplete = req.body.isComplete;
     return res
         .status(200)
-        .json(await conversationService.updateConversation(id, req.body));
+        .json(await conversationService.updateConversation(id, isComplete));
 };
 
 export const deleteConversation = async (req: Request, res: Response) => {
