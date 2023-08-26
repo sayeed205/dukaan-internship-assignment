@@ -12,9 +12,7 @@ This solution is only focused on routes and their functionality with SQLite data
 -   Implement a search feature for chatbots or end users.
 -   Implement pagination on endpoints that return lists of entities.
 
-For Bonus section go to ...
-
-// todo)) add bonus section link
+For Bonus section go to [here](https://github.com/sayeed205/dukaan-internship-assignment-bonus)
 
 ### Getting started
 
