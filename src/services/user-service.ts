@@ -44,7 +44,6 @@ export const updateUser = async (id: number, userInfo: Partial<UpdateUser>) => {
         throw new ErrorResponse('Email is already in use', 409);
     }
 
-    // update and get only id name and email
     await user.update({ ...userInfo });
     return { ok: true, user };
 };

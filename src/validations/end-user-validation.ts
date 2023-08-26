@@ -1,14 +1,14 @@
 import { z } from 'zod';
 
-const userId = z.object({
+const endUserId = z.object({
     id: z
         .string({
-            required_error: 'User id is required',
+            required_error: 'EndUser id is required',
         })
         .transform(val => parseInt(val, 10)),
 });
 
-const userInfo = z.object({
+const endUserInfo = z.object({
     name: z.string({
         required_error: 'Name is required',
     }),
@@ -19,11 +19,11 @@ const userInfo = z.object({
         .email(),
 });
 
-export const getUserById = z.object({
-    params: userId,
+export const getEndUserById = z.object({
+    params: endUserId,
 });
 
-const userPassword = z.object({
+const endUserPassword = z.object({
     password: z
         .string({
             required_error: 'Password is required',
@@ -34,18 +34,18 @@ const userPassword = z.object({
         ),
 });
 
-const createUserSchema = userInfo.merge(userPassword);
-export const createUser = z.object({
-    body: createUserSchema.strict(),
+const createEndUserSchema = endUserInfo.merge(endUserPassword);
+export const createEndUser = z.object({
+    body: createEndUserSchema.strict(),
 });
 
-export const updateUser = z.object({
-    params: userId,
-    body: userInfo.partial().refine(val => Object.keys(val).length > 0, {
+export const updateEndUser = z.object({
+    params: endUserId,
+    body: endUserInfo.partial().refine(val => Object.keys(val).length > 0, {
         message: "At least one field is required 'name' or 'email' to update",
         path: ['name', 'email'],
     }),
 });
 
-export type CreateUser = z.infer<typeof createUserSchema>;
-export type UpdateUser = z.infer<typeof userInfo>;
+export type CreateEndUser = z.infer<typeof createEndUserSchema>;
+export type UpdateEndUser = z.infer<typeof endUserInfo>;
