@@ -5,7 +5,7 @@ dotenv.config();
 
 import db from './config/db';
 import { errorHandler } from './middleware';
-import { userRouter } from './routes';
+import { chatbotRouter, userRouter } from './routes';
 
 const app = express();
 
@@ -14,6 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 
 app.use(userRouter); // user router
+app.use(chatbotRouter); // chatbot router
 
 const PORT = process.env.PORT || 5000;
 
